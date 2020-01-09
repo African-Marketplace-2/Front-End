@@ -15,12 +15,12 @@ const ItemList = () => {
     setItemToEdit(items);
   };
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get('https://african-marketplace-1.herokuapp.com/api/items')
-      .then(response => setItems(response.data))
-      .catch(error => console.log("GET request Failed", error));
-  }, []);
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get('https://african-marketplace-1.herokuapp.com/api/items')
+  //     .then(response => setItems(response.data))
+  //     .catch(error => console.log("GET request Failed", error));
+  // }, []);
 
   const saveEdit = id => {
     // id.preventDefault();

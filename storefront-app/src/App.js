@@ -7,7 +7,7 @@ import RegisterForm from './components/Register';
 import ItemList from './components/LandingPage';
 import NavBar from './components/NavBar';
 import PostItems from './components/postItems';
-import MarketPlace from './components/MarketPlace'; 
+import Edititem from './components/Edititem'; 
 import UserPage from './components/UserPage';
 import './App.css';
 
@@ -22,8 +22,8 @@ function App() {
         <Route exact path="/" component={ItemList} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/register" component={RegisterForm} />
-        <Route path="/postItems" component={PostItems}/>
-        <Route path="/MarketPlace" component={MarketPlace}/>
+        <PrivateRoute path="/postitems" component={PostItems}/>
+        <PrivateRoute path="/edititem/:id" component={Edititem}/>
         <Redirect to="/login" component={LoginForm} />
       </Switch>
     </div>

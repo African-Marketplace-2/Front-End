@@ -10,7 +10,7 @@ const EditCard = ({
   return (
     <div>
       <form onSubmit={saveEdit}>
-        <legend>edit item</legend>
+        <legend>edit an item</legend>
         <label>
           item name:
           <input
@@ -19,20 +19,54 @@ const EditCard = ({
             }
             value={itemToEdit.item}
           />
-        </label>
-        <label>
+        </label> <label>
+          Description:
           <input
             onChange={e =>
-              setItemToEdit({
-                ...itemToEdit
-                // code: { hex: e.target.value }
-              })
+              setItemToEdit({ ...itemToEdit, item: e.target.value })
             }
+            value={editItem.item}
+          />
+        </label>
+        <label>
+          Price:
+          <input
+            onChange={e =>
+              setItemToEdit({ ...itemToEdit, item: e.target.value })
+            }
+            value={editItem.item}
+          />
+        </label>
+        <label>
+          Category:
+          <input
+            onChange={e =>
+              setItemToEdit({ ...itemToEdit, item: e.target.value })
+            }
+            value={editItem.item}
+          />
+        </label>
+        <label>
+          Location:
+          <input
+            onChange={e =>
+              setItemToEdit({ ...itemToEdit, item: e.target.value })
+            }
+            value={editItem.item}
+          />
+        </label>
+        <label>
+          Image URL:
+          <input
+            onChange={e =>
+              setItemToEdit({ ...itemToEdit, item: e.target.value })
+            }
+            value={editItem.item}
           />
         </label>
         <div>
-          <button type="submit">save</button>
-          <button onClick={() => setItems(false)}>cancel</button>
+          <button type="submit">Submit</button>
+          <button onClick={() => setItems(false)}>Delete</button>
         </div>
       </form>
     </div>

@@ -30,7 +30,6 @@ export default function ItemList() {
             {filteredData.map(item => {
                     return <MediaCard key={item.id} item={item} />
             })}
-            <Logout/>
         </section>
     );
 }

@@ -2,44 +2,51 @@ import React, { useState } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 const PostItems = props => {
-  const [user, setUser] = useState({
-    name: "",
-    description: "",
-    price: "",
-    category: "",
-    location: "",
-    user_id: `${localStorage.getItem('id')}`
-  });
+  const { addItem } = props;
+  const [item, setItem] = useState({});
 
   const handleChange = event => {
-    setUser({
-      ...user,
+    setItem({
+      ...item,
       [event.target.name]: event.target.value,
     });
   };
 
-  console.log("user", user)
+  console.log("item", item)
 
-  const handleSubmit = event => {
+
+  function submitForm(event){
     event.preventDefault();
+    const newItem = {
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      category: item.category,
+      location: item.location,
+      itemImg: item.itemImg, 
+      user_id: `${localStorage.getItem('id')}`
+    }
     axiosWithAuth()
-      .post('/items', user)
+      .post('/items', newItem)
       .then(response => {
         console.log("response", response)
         props.history.push(`/MarketPlace/${response.data.id}`)
       })
       .catch(err => console.log(err))
   }
+
+   
+
   return (
     <div>
       <h1>Welcome to the African Market App!</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitForm}>
         <label>Name</label>
         <input
           type="text"
           name="name"
           placeholder="Name"
-          value={user.name}
+          value={item.name}
           onChange={handleChange}
         />
         <label>Descripition</label>
@@ -47,7 +54,7 @@ const PostItems = props => {
           type="text"
           name="description"
           placeholder="Description"
-          value={user.description}
+          value={item.description}
           onChange={handleChange}
         />
         <label>Price</label>
@@ -55,7 +62,7 @@ const PostItems = props => {
           type="text"
           name="price"
           placeholder="Price"
-          value={user.price}
+          value={item.price}
           onChange={handleChange}
         />
         <label>Category</label>
@@ -63,7 +70,7 @@ const PostItems = props => {
           type="text"
           name="category"
           placeholder="Category"
-          value={user.category}
+          value={item.category}
           onChange={handleChange}
         />
         <label>Location</label>
@@ -71,7 +78,7 @@ const PostItems = props => {
           type="text"
           name="location"
           placeholder="Location"
-          value={user.location}
+          value={item.location}
           onChange={handleChange}
         />
         <button type="submit">Add</button>

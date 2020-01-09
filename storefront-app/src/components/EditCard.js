@@ -15,9 +15,8 @@ const EditCard = ({
     category: "",
     location: "",
     itemImg: "",
-    user_id: localStorage.getItem('id')
+    user_id: `${localStorage.getItem('id')}`
   });
-
   const putEdit = id => {
     axiosWithAuth()
       .put(`https://african-marketplace-1.herokuapp.com/api/items/${id}`, items)
@@ -87,7 +86,7 @@ const EditCard = ({
         </label>
         <div>
           <button className="add-btn" type="submit" onClick={() => putEdit}>Submit</button>
-          <button  className="del-btn" onClick={() => deleteItem(item.id)}>Delete</button>
+          <button  className="del-btn" onClick={(e) => deleteItem(item.id, e)}>Delete</button>
         </div>
       </form>
     </div>

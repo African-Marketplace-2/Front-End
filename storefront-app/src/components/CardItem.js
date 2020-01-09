@@ -12,7 +12,7 @@ console.log(item);
             <p>{item.category}</p>
             <p>{item.location}</p>
             <div>
-            <Link to="/editcard" onClick={() =>  saveEdit(item.id)}>Edit</Link>
+            <Link to="/editcard" onClick={() => saveEdit(item.id)}>Edit</Link>
           </div>
           <div>
       <button onClick={() => deleteItem(item.id)}>Delete</button>

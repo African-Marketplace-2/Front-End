@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import CardItem from "./CardItem";
 import EditCard from "./EditCard";
@@ -21,39 +21,34 @@ const ItemList = () => {
   //   });
   // };
 
-  const saveEdit = id => {
-    axiosWithAuth()
-    // event.preventDefault();
-    // const editItem = {
-    //   name: item.name,
-    //   description: item.description,
-    //   price: item.price,
-    //   category: item.category,
-    //   location: item.location,
-    //   itemImg: item.itemImg, 
-    //   user_id: `${localStorage.getItem('id')}`
-    // }
-      .put(`/items/${id}`, itemToEdit)
-      .then(response => {
-        console.log("saveEdit", response);
-        setEditItem(false);
-      })
-      .catch(error => console.log("PUT failed", error));
-  };
-
-  //   useEffect(() => {
+  // const saveEdit = id => {
   //   axiosWithAuth()
-  //     .get('https://african-marketplace-1.herokuapp.com/api/items')
-  //     .then(response => setItems(response.data))
-  //     .catch(error => console.log("GET request Failed", error));
-  // }, []);
+  //     .put(`https://african-marketplace-1.herokuapp.com/api/items/${id}`, itemToEdit)
+  //     .then(response => {
+  //       console.log("saveEdit", response);
+  //       setEditItem(false);
+  //     })
+  //     .catch(error => console.log("PUT failed", error));
+  // };
+
+  const getItem = () => {
+    axiosWithAuth()
+      .get('https://african-marketplace-1.herokuapp.com/api/items')
+      .then(response => setItems(response.data))
+      .catch(error => console.log("GET request Failed", error));
+  }
+    useEffect(() => { 
+      getItem()
+  }, []);
 
   const deleteItem = id => {
     console.log("delete", id);
-    axiosWithAuth("helper")
-      .delete(`/items/${id}`)
+    axiosWithAuth()
+      .delete(`https://african-marketplace-1.herokuapp.com/api/items/${id}`)
       .then(response => {
-        editItem(items.filter(item => item.id !== response.data));
+        console.log(response)
+        getItem()
+      //   editItem (items.filter(item => item.id !== response.data));
       })
       .catch(error => console.log(error));
   };
@@ -64,11 +59,11 @@ const ItemList = () => {
       <div>
         <Route to="/marketplace" />
         {items.map(item => (
-          <CardItem
+          <CardItem 
             item={item}
             editItems={editItems}
             deleteItem={deleteItem}
-            saveEdit={saveEdit}
+            // saveEdit={saveEdit}
           />
         ))}
       </div>
@@ -77,7 +72,7 @@ const ItemList = () => {
         setItemToEdit={setItemToEdit}
         editItem={editItem}
         itemToEdit={itemToEdit}
-        saveEdit={saveEdit}
+        // saveEdit={saveEdit}
         setItems={setItems}
         deleteItem={deleteItem}
       />

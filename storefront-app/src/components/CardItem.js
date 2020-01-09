@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link} from 'react-router-dom'; 
 
 const CardItem = ({item, deleteItem, saveEdit}) => {
 console.log(item);
@@ -7,11 +8,11 @@ console.log(item);
         <div>
             <p>{item.name}</p>
             <p>{item.description}</p>
-            <div><p>{item.price}</p>
-            <p>{item.category}</p></div>
+            <p>{item.price}</p>
+            <p>{item.category}</p>
             <p>{item.location}</p>
             <div>
-            <button onClick={() => saveEdit(item.id)}>save</button>
+            <Link to="/editcard" onClick={() =>  saveEdit(item.id)}>Edit</Link>
           </div>
           <div>
       <button onClick={() => deleteItem(item.id)}>Delete</button>

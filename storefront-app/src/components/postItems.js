@@ -14,16 +14,27 @@ const PostItems = props => {
   console.log("item", item)
 
 
-  function submitForm(event){
+  function submitForm(e){ 
+    e.preventDefault();
+    const newItem = {
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      category: item.category,
+      location: item.location, 
+      itemImg: item.itemImg,
+      user_id: `${localStorage.getItem('id')}`
+    }
+
     axiosWithAuth()
-      .post('/items', item)
+      .post('/items', newItem)
       .then(response => {
         console.log("response", response)
         props.history.push(`/MarketPlace/${response.data.id}`)
       })
       .catch(err => console.log(err))
+      console.log('works')
   }
-
    
 
   return (
@@ -39,7 +50,7 @@ const PostItems = props => {
           onChange={handleChange}
         />
         <label>Descripition</label>
-        <input  className="border"
+        <input className="border"
           type="text"
           name="description"
           placeholder="Description"

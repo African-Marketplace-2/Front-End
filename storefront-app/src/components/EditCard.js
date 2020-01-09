@@ -1,72 +1,92 @@
-import React from "react";
+import React, {useState} from "react";
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const EditCard = ({
   setItemToEdit,
   editItem,
   itemToEdit,
-  saveEdit,
   item,
   deleteItem
 }) => {
+  const [items, setItem] = useState({
+    name: "",
+    description: "",
+    price: "",
+    category: "",
+    location: "",
+    itemImg: "",
+    user_id: localStorage.getItem('id')
+  });
+
+  const putEdit = id => {
+    axiosWithAuth()
+      .put(`https://african-marketplace-1.herokuapp.com/api/items/${id}`, items)
+      .then(response => {
+        console.log("putEdit ", response);
+        // setEditItem(false);
+      })
+      .catch(error => console.log("PUT failed", error));
+  };
+
   return (
     <div>
-      <form onSubmit={saveEdit} className="form">
+      <form onSubmit={putEdit} className="form">
         <legend>Edit an item</legend>
         <label>
           Item name:
           <input className="border"
-            onChange={e =>
-              setItemToEdit({ ...itemToEdit, item: e.target.value })
+            onChange={e => 
+              setItem({ ...items, name: e.target.value })
             }
-            value={editItem.item}
+            value={items.name}
           />
         </label> <label>
           Description:
           <input className="border"
             onChange={e =>
-              setItemToEdit({ ...itemToEdit, item: e.target.value })
+              setItem({ ...items, description: e.target.value })
             }
-            value={editItem.item}
+            value={items.description}
           />
         </label>
         <label>
           Price:
           <input className="border"
             onChange={e =>
-              setItemToEdit({ ...itemToEdit, item: e.target.value })
+              setItem({ ...items, price: e.target.value })
             }
-            value={editItem.item}
+            value={items.price}
           />
         </label>
         <label>
           Category:
           <input className="border"
             onChange={e =>
-              setItemToEdit({ ...itemToEdit, item: e.target.value })
+              setItem({ ...items, category: e.target.value })
             }
-            value={editItem.item}
+            value={items.category}
           />
         </label>
         <label>
           Location:
           <input className="border"
             onChange={e =>
-              setItemToEdit({ ...itemToEdit, item: e.target.value })
+              setItem({ ...items, location: e.target.value })
             }
-            value={editItem.item}
+            value={items.location}
           />
         </label>
         <label>
           Image URL:
           <input className="border"
             onChange={e =>
-              setItemToEdit({ ...itemToEdit, item: e.target.value })
+              setItem({ ...items, itemImg: e.target.value })
             }
-            value={editItem.item}
+            value={items.itemImg}
           />
         </label>
         <div>
-          <button className="add-btn" type="submit" onClick={() => saveEdit}>Submit</button>
+          <button className="add-btn" type="submit" onClick={() => putEdit}>Submit</button>
           <button  className="del-btn" onClick={() => deleteItem(item.id)}>Delete</button>
         </div>
       </form>

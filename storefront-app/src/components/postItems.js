@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 const PostItems = props => {
-  const { addItem } = props;
   const [item, setItem] = useState({});
 
   const handleChange = event => {
@@ -16,18 +15,8 @@ const PostItems = props => {
 
 
   function submitForm(event){
-    event.preventDefault();
-    const newItem = {
-      name: item.name,
-      description: item.description,
-      price: item.price,
-      category: item.category,
-      location: item.location,
-      itemImg: item.itemImg, 
-      user_id: `${localStorage.getItem('id')}`
-    }
     axiosWithAuth()
-      .post('/items', newItem)
+      .post('/items', item)
       .then(response => {
         console.log("response", response)
         props.history.push(`/MarketPlace/${response.data.id}`)
@@ -40,9 +29,9 @@ const PostItems = props => {
   return (
     <div>
       <h1>Welcome to the African Market App!</h1>
-      <form onSubmit={submitForm}>
+      <form onSubmit={submitForm} className="form">
         <label>Name</label>
-        <input
+        <input  className="border"
           type="text"
           name="name"
           placeholder="Name"
@@ -50,7 +39,7 @@ const PostItems = props => {
           onChange={handleChange}
         />
         <label>Descripition</label>
-        <input
+        <input  className="border"
           type="text"
           name="description"
           placeholder="Description"
@@ -58,7 +47,7 @@ const PostItems = props => {
           onChange={handleChange}
         />
         <label>Price</label>
-        <input
+        <input className="border"
           type="text"
           name="price"
           placeholder="Price"
@@ -66,7 +55,7 @@ const PostItems = props => {
           onChange={handleChange}
         />
         <label>Category</label>
-        <input
+        <input className="border"
           type="text"
           name="category"
           placeholder="Category"
@@ -74,14 +63,14 @@ const PostItems = props => {
           onChange={handleChange}
         />
         <label>Location</label>
-        <input
+        <input className="border"
           type="text"
           name="location"
           placeholder="Location"
           value={item.location}
           onChange={handleChange}
         />
-        <button type="submit">Add</button>
+        <button type="submit" className="add-btn">Add</button>
       </form>
     </div>
   );

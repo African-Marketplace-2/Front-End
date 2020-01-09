@@ -5,23 +5,24 @@ const EditCard = ({
   editItem,
   itemToEdit,
   saveEdit,
-  setItems
+  item,
+  deleteItem
 }) => {
   return (
     <div>
-      <form onSubmit={saveEdit}>
-        <legend>edit an item</legend>
+      <form onSubmit={saveEdit} className="form">
+        <legend>Edit an item</legend>
         <label>
-          item name:
-          <input
+          Item name:
+          <input className="border"
             onChange={e =>
               setItemToEdit({ ...itemToEdit, item: e.target.value })
             }
-            value={itemToEdit.item}
+            value={editItem.item}
           />
         </label> <label>
           Description:
-          <input
+          <input className="border"
             onChange={e =>
               setItemToEdit({ ...itemToEdit, item: e.target.value })
             }
@@ -30,7 +31,7 @@ const EditCard = ({
         </label>
         <label>
           Price:
-          <input
+          <input className="border"
             onChange={e =>
               setItemToEdit({ ...itemToEdit, item: e.target.value })
             }
@@ -39,7 +40,7 @@ const EditCard = ({
         </label>
         <label>
           Category:
-          <input
+          <input className="border"
             onChange={e =>
               setItemToEdit({ ...itemToEdit, item: e.target.value })
             }
@@ -48,7 +49,7 @@ const EditCard = ({
         </label>
         <label>
           Location:
-          <input
+          <input className="border"
             onChange={e =>
               setItemToEdit({ ...itemToEdit, item: e.target.value })
             }
@@ -57,7 +58,7 @@ const EditCard = ({
         </label>
         <label>
           Image URL:
-          <input
+          <input className="border"
             onChange={e =>
               setItemToEdit({ ...itemToEdit, item: e.target.value })
             }
@@ -65,8 +66,8 @@ const EditCard = ({
           />
         </label>
         <div>
-          <button type="submit">Submit</button>
-          <button onClick={() => setItems(false)}>Delete</button>
+          <button className="add-btn" type="submit" onClick={() => saveEdit}>Submit</button>
+          <button  className="del-btn" onClick={() => deleteItem(item.id)}>Delete</button>
         </div>
       </form>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardItem = ({item, editItems, deleteItem, saveEdit}) => {
+const CardItem = ({item, deleteItem, saveEdit}) => {
 console.log(item);
 
     return(
@@ -11,7 +11,7 @@ console.log(item);
             <p>{item.category}</p></div>
             <p>{item.location}</p>
             <div>
-            <button onClick={() =>  saveEdit(item.id)}>save</button>
+            <button onClick={() => saveEdit(item.id)}>save</button>
           </div>
           <div>
       <button onClick={() => deleteItem(item.id)}>Delete</button>

@@ -15,6 +15,39 @@ html, body, #root, #App {
   height: 40vmin;
   pointer-events: none;
 }
+.form{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 30%;
+  padding: 30px;
+}
+.border{
+  border: 2px solid #9999FF;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
+.add-btn{
+  background-color: #9999FF;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 30px;
+}
+.del-btn{
+  background-color: #FF9D4C;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

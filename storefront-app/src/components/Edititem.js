@@ -47,9 +47,9 @@ const ItemList = props => {
       .then(response => setItems(response.data))
       .catch(error => console.log("GET request Failed", error));
   };
-  // useEffect(() => {
-  //   getItem();
-  // }, []);
+  useEffect(() => {
+    getItem();
+  }, []);
 
   const deleteItem = (id, e) => {
     console.log("delete", id);
@@ -93,5 +93,4 @@ const ItemList = props => {
     </div>
   );
 };
-
 export default ItemList;

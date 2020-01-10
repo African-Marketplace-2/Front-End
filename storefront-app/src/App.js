@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/register" component={RegisterForm} />
         <PrivateRoute path="/postitems" component={PostItems}/>
         <PrivateRoute path="/edititem/:id" component={Edititem}/>
-        <Redirect to="/login" component={LoginForm} />
+        {/* <Redirect to="/login" component={LoginForm} /> */}
       </Switch>
     </div>
   );
